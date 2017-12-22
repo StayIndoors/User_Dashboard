@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Signin Page</title>
+</head>
+<body>
+    <div id="wrapper">
+        <div>
+            <h3>Test App</h3>
+            <a href="/">Home</a>
+            <a href="/signin">Sign In</a>
+        </div>
+
+        <div>
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+
+        <div>
+            <h1>Sign In</h1>
+            <form action="/process_signin" method="POST">
+                {% csrf_token %}
+                <p><label >Email Address:</label><input type="text" name="email"></p>
+                <p><label >Password:</label><input type="password" name="password"></p>
+                <p><input type="submit" value="Sign In"></p>
+            </form>
+        </div>
+        
+        <div>
+            <a href="/register">Don't have an account? Register.</a>
+        </div>
+    </div>
+</body>
+</html>

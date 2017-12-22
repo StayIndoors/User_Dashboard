@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <div id="wrapper">
+        <div>
+            <h3>Test App</h3>
+            <a href="/dashboard/admin">Dashboard</a>
+            <a href="/users/show/{{request.session.user_id}}">Profile</a>
+            <a href="/logout">Log off</a>
+        </div>
+
+        <div>
+            <div>
+                <form action="/users/new" method="POST">
+                    {% csrf_token %}
+                    <input type="submit" value="Add new">
+                </form>
+            </div>
+
+            <div>
+                <h2>Manage Users</h2>
+            </div>
+
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Name^</th>
+                            <th>email</th>
+                            <th>created_at</th>
+                            <th>user_level</th>
+                            <th>actions</th>                                                        
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in all_users %}
+                        <tr>
+                            <td>{{ user.id }}</td>
+                            <td><a href="/users/show/{{user.id}}">{{ user.first_name }} {{ user.last_name }}</a></td>
+                            <td>{{ user.email }}</td>
+                            <td> {{ user.created_at|date:"F dS Y" }}</td>
+                            {% if user.admin %}
+                            <td>admin</td>
+                            {% else %}
+                            <td>normal</td>
+                            {% endif %}
+                            <td><a href="users/edit/{{user.id}}">edit</a> <a href="users/delete/{{user.id}}">remove</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

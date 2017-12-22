@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>User Information</title>
+</head>
+<body>
+    <div id="wrapper">
+        <div>
+            <h3>Test App</h3>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/users/show/{{request.session.user_id}}">Profile</a>
+            <a href="/logout">Log off</a>
+        </div>
+
+        <div>
+            <h2>{{ user.first_name }} {{user.last_name }}</h2>
+            <p>Registered at:</p>p>
+            <p>{{ user.created_at }}</p>
+            <p>User ID:</p>
+            <p>{{ user.id }}</p>
+            <p>Email address:</p>
+            <p>{{ user.email }}</p>
+            <p>Description:</p>
+            <p>{{ user.description }}</p>
+        </div>
+
+        <div>
+            
+        </div>
+    </div>
+</body>
+</html>

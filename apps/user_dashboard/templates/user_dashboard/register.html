@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Register</title>
+</head>
+<body>
+    <div id="wrapper">
+        <div>
+            <h3>Test App</h3>
+            <a href="/">Home</a>
+            <a href="/signin">Sign In</a>
+        </div>
+
+        <div>
+            <h1>Register</h1>
+            <div>
+                {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            <div>
+                <form action="/process_register" method="POST">
+                    {% csrf_token %}
+                    <label >Email:</label><input type="text" name="email">
+                    <label >First Name:</label><input type="text" name="first_name">
+                    <label >Last Name:</label><input type="text" name="last_name">
+                    <label >Password:</label><input type="text" name="password">
+                    <label >Confirm Password:</label><input type="text" name="confirm_password">
+                    <input type="submit" value="Register">
+                </form>
+            </div>
+        </div>
+
+        <div>
+            <a href="/signin">Already have an account? Login.</a>
+        </div>
+    </div>
+</body>
+</html>

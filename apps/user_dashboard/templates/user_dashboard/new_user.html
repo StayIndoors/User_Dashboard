@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>New User</title>
+</head>
+<body>
+    <div id="wrapper">
+        <div>
+            <h3>Test App</h3>
+            <a href="/dashboard/admin">Dashboard</a>
+            <a href="/users/show/{{user.id}}">Profile</a>
+            <a href="/logout">Log off</a>
+        </div>
+
+        <div>
+            <form action="/dashboard/admin" method="POST">
+                {% csrf_token %}
+                <input type="submit" value="Return to Dashboard">
+            </form>
+            <h1>Add a new user</h1>
+            <div>
+            </div>
+            <div>
+                {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            <div>
+                <form action="/users/add_new" method="POST">
+                    {% csrf_token %}
+                    <label >Email:</label><input type="text" name="email">
+                    <label >First Name:</label><input type="text" name="first_name">
+                    <label >Last Name:</label><input type="text" name="last_name">
+                    <label >Password:</label><input type="text" name="password">
+                    <label >Confirm Password:</label><input type="text" name="confirm_password">
+                    <input type="submit" value="Create">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
